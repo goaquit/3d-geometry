@@ -1,7 +1,6 @@
 #include "Shader.h"
 #include <fstream>
 #include <sstream>
-#include <iostream>
 
 #include <GL/glew.h>
 
@@ -31,7 +30,7 @@ void Shader::setShaderFile(const std::string &vertexPath, const std::string & fr
 	}
 	catch (std::ifstream::failure e)
 	{
-		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
+		throw std::runtime_error(e.what());
 	}
 	const auto vShaderCode = vertexCode.c_str();
 	const auto fShaderCode = fragmentCode.c_str();
@@ -47,7 +46,7 @@ void Shader::setShaderFile(const std::string &vertexPath, const std::string & fr
 	if (!success)
 	{
 		glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+		throw std::runtime_error(std::string("ERROR::SHADER::VERTEX::COMPILATION_FAILED\n") + infoLog);
 	};
 
 
@@ -59,7 +58,7 @@ void Shader::setShaderFile(const std::string &vertexPath, const std::string & fr
 	if (!success)
 	{
 		glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+		throw std::runtime_error(std::string("ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n") + infoLog);
 	}
 
 
@@ -72,7 +71,7 @@ void Shader::setShaderFile(const std::string &vertexPath, const std::string & fr
 	if (!success)
 	{
 		glGetProgramInfoLog(program, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
+		throw std::runtime_error(std::string("ERROR::SHADER::PROGRAM::LINKING_FAILED\n") + infoLog);
 	}
 
 	glDeleteShader(vertex);

@@ -3,23 +3,23 @@
 #include "Pyramid.h"
 #include "Sphere.h"
 
-sharedFigure FigureFactory::createCube()
+SharedFigure FigureFactory::createCube()
 {
-	sharedFigure cube(new Cube);
+	SharedFigure cube(new Cube);
 	cube->init();
 	return cube;
 }
 
-sharedFigure FigureFactory::createPyramid()
+SharedFigure FigureFactory::createPyramid()
 {
-	sharedFigure pyramid(new Pyramid);
+	SharedFigure pyramid(new Pyramid);
 	pyramid->init();
 	return pyramid;
 }
 
-sharedFigure FigureFactory::createSphere()
+SharedFigure FigureFactory::createSphere()
 {
-	sharedFigure sphere(new Sphere);
+	SharedFigure sphere(new Sphere);
 	sphere->init();
 	return sphere;
 }

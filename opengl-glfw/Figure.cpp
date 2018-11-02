@@ -6,7 +6,7 @@ void Figure::vertexBinding()
 {
 	if (vertices.empty() || color.empty())
 	{
-		throw "Geometry not init";
+		throw std::runtime_error("Geometry not init");
 	}
 
 	GLuint colorBuffer, vertexBuffer;

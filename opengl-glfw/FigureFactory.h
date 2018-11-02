@@ -3,14 +3,14 @@
 
 class Figure;
 
-using sharedFigure = std::shared_ptr<Figure>;
+using SharedFigure = std::shared_ptr<Figure>;
 
 class FigureFactory
 {
 public:
-	sharedFigure createCube();
-	sharedFigure createPyramid();
-	sharedFigure createSphere();
+	SharedFigure createCube();
+	SharedFigure createPyramid();
+	SharedFigure createSphere();
 
 	virtual ~FigureFactory() {};
 };

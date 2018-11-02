@@ -18,9 +18,9 @@ void ApplicationOpenGl::exec()
 		workCycle();
 
 	}
-	catch (const char * errorMsg)
+	catch (const std::runtime_error &error)
 	{
-		std::cout << errorMsg << std::endl;
+		std::cout << error.what() << std::endl;
 	}	
 
 	glfwTerminate();
@@ -39,7 +39,7 @@ void ApplicationOpenGl::openGlInit()
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
 	{
-		throw "Failed to initialize GLEW";
+		throw std::runtime_error("Failed to initialize GLEW");
 	}
 
 	createViewport();
@@ -52,7 +52,7 @@ void ApplicationOpenGl::createWindows()
 	window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 	if (!window)
 	{
-		throw "Failed to create GLFW window";
+		throw std::runtime_error("Failed to create GLFW window");
 	}
 
 	glfwMakeContextCurrent(window);
